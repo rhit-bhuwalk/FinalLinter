@@ -3,6 +3,8 @@ package Linter;
 import java.util.ArrayList;
 import java.util.List;
 import DataSource.*;
+import tests.EqualsHashTests;
+import tests.ObserverPatternTests;
 public class Linter {
 
 	private List<Check> checkList;
@@ -10,6 +12,7 @@ public class Linter {
 	public Linter() {
 		checkList = new ArrayList<Check>();
 	}
+	
 	
 	
 	
@@ -42,8 +45,14 @@ public class Linter {
 		checkList.add(new MissingImplementationsOfAbstractTypes(data));
 		checkList.add(new ExposeThirdPartyTypeCheck(data));
 		checkList.add(new TemplatePattern(data));
-		//checkList.add(new NamingConventionCheck(data));
-		//checkList.add(new TightCouplingCheck(data));
-		//checkList.add(new AdapterPatternCheck(data));
+		checkList.add(new NamingConventionCheck(data));
+		checkList.add(new TightCouplingCheck(data));
+		checkList.add(new AdapterPatternCheck(data));
+		checkList.add(new EqualsHashCheck(data));
+		checkList.add(new ObserverPatternCheck(data));
+		checkList.add(new ProgramToInterfaceCheck(data));
+		checkList.add(new RedundantInterfaceCheck(data));
+		checkList.add(new StrategyPatternCheck(data));
+		
 	}
 }

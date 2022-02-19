@@ -9,7 +9,8 @@ import org.objectweb.asm.tree.TypeAnnotationNode;
 public class FieldDataObj extends DataObj{
 	
 	private String desc;
-
+//Ljava/util/List;
+//Ljava/util/List<Ljava/lang/String;>;	
 	public FieldDataObj(String n, int access, String signature,
 			String fieldDesc) {
 		this.name = n;
