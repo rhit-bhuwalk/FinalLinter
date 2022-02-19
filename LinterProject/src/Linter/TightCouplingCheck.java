@@ -29,6 +29,7 @@ public class TightCouplingCheck extends Check {
 			}
 			ArrayList<String> data = map.get(frst.getName());
 			// iterate through fields inside of class
+			if(frst.getFields()!=null) {
 			for (FieldDataObj scnd : frst.getFields()) {
 				// add any fields that are user defined classes to the hashmap
 				for(String s : l) {
@@ -36,6 +37,7 @@ public class TightCouplingCheck extends Check {
 						data.add(s);						
 					}
 				}
+			}
 			}
 			// add the superclass
 			if (frst.getSuperClassName() != "java/lang/Object") {
@@ -47,10 +49,12 @@ public class TightCouplingCheck extends Check {
 		for (String s : map.keySet()) {
 			ArrayList<String> targets = map.get(s);
 			for (int count = 0; count < targets.size(); count++) {
+				if(map.get(targets.get(count)) != null) {
 				if (map.get(targets.get(count)).contains(s)) {
 					sb.add("Tight coupling detected: "
 							+ "loop between "+s+" and "+targets.get(count));						
 					map.get(targets.get(count)).remove(s);
+				}
 				}
 			}
 		}

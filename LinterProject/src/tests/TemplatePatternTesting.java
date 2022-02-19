@@ -15,6 +15,7 @@ import Linter.Linter;
 import Linter.MissingImplementationsOfAbstractTypes;
 import Linter.TemplatePattern;
 
+//written by Kush Bhuwalka
 public class TemplatePatternTesting {
 
 	@Test

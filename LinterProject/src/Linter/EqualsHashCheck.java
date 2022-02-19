@@ -21,12 +21,14 @@ public class EqualsHashCheck extends Check{
 			int hash = 0;
 			int eql = 0;
 			//determine if hashCode and/or equals are implemented
+			if(target.getMethods()!=null) {
 			for (MethodDataObj a : target.getMethods()) {
-				if(a.getName()=="hashCode" && a.getParamList().size()==0) {
+				if(a.getName()=="hashCode" && (a.getParamList()==null || a.getParamList().size()==0)) {
 					hash++;
-				}else if(a.getName()=="equals" && a.getParamList().size()==0) {
+				}else if(a.getName()=="equals" && (a.getParamList()==null || a.getParamList().size()==0)) {
 					eql++;
 				}
+			}
 			}
 			// add any offenders to the list
 			if (hash==0 && eql!=0) {

@@ -18,7 +18,7 @@ public class ObserverPatternCheck extends Check{
 		List<String> sb = new ArrayList<String>();
 		//observer is an abstract class w/ an update method
 		for (ClassDataObj obs : data) {
-			if(obs.isAbstract()) {
+			if(obs.isAbstract() && obs.getMethods()!=null) {
 				boolean valid = false;
 				for(int count=0; count<obs.getMethods().size(); count++) {
 					if(obs.getMethods().get(count).getName().contains("update")) {
@@ -29,9 +29,11 @@ public class ObserverPatternCheck extends Check{
 				if(valid) {
 					String target = "List<"+obs.getName()+">";
 					for (ClassDataObj subj : data) {
+						if(subj.getFields()!=null) {
 						for(int count=0; count<subj.getFields().size(); count++) {
 							//check if this class has a list of the observer
 							if(subj.getFields().get(count).getFieldDesc().contains(target)) {
+								if(obs.getFields()!=null) {
 								for(int count1=0; count1<obs.getFields().size(); count1++) {
 									//check if the observer has an instance of this class
 									if(obs.getFields().get(count1).getFieldDesc().contains(subj.getName())) {
@@ -39,7 +41,9 @@ public class ObserverPatternCheck extends Check{
 										break;
 									}
 								}
+								}
 							}
+						}
 						}
 					}
 				}
