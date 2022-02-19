@@ -11,6 +11,18 @@ public class Linter {
 		checkList = new ArrayList<Check>();
 	}
 	
+	
+	
+	
+	public List<String> lint(List<ClassDataObj> data) {
+		List<String> toReturn = new ArrayList<String>();
+		
+			for (Check c : checkList) {
+				toReturn.addAll(c.check());
+				}
+		return toReturn;
+	}
+	
 	public List<String> lintAll(List<ClassDataObj> data) {
 		populateCheckList(data);
 		List<String> toReturn = new ArrayList<String>();
@@ -21,6 +33,10 @@ public class Linter {
 		return toReturn;
 	}
 
+	public void addToCheckList(Check c) {
+		checkList.add(c);
+	}
+	
 	private void populateCheckList(List<ClassDataObj> data) {
 		checkList.clear();
 		checkList.add(new MissingImplementationsOfAbstractTypes(data));

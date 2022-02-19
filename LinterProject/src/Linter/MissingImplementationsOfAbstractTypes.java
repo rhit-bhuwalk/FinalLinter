@@ -39,10 +39,7 @@ public class MissingImplementationsOfAbstractTypes extends Check {
 			
 			if(!implemented)
 			{	
-				if(abClass.isInterface())
-					errors.add("Interface " + abClass.getName() + "is unimplemented \n");
-				else
-					errors.add("Abstract class " + abClass.getName() + "is unimplemented \n");
+				errors.add("Abstract class " + abClass.getName() + " is unimplemented \n");
 			}
 		}
 		return errors;	
